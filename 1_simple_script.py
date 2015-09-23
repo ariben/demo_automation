@@ -1,3 +1,7 @@
+'''
+Ejemplo clasico: abrir browser, buscar elemento, ingresar cadena de texto
+'''
+
 import time
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait

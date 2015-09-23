@@ -1,3 +1,9 @@
+'''
+Convirtiendo script en clases de prueba
+Setup: será lo primero que se ejecute, usualmente contiene la inicializacion del browser + url de la webapp
+tearDown: lo que siempre se ejecutara para terminar el script(cerrar el browser)
+'''
+
 import time
 import unittest
 from selenium import webdriver

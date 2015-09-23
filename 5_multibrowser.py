@@ -3,11 +3,17 @@ import unittest
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait
 
+'''
+El siguiente script requiere tener una cuenta en testingbot.com
+Una vez creada copiar tu id de : http://testingbot.com/support/getting-started/python.html
+'''
+
+
 class SeguroTest(unittest.TestCase):
     def setUp(self):
         capabilities = { 'platform': 'Windows', 'browserName': 'internet explorer', 'version': '9' }
         self.driver = webdriver.Remote(
-    		    command_executor='http://83aedbee7ef3b23052c76b91d0396f4f:02c030fee633d01bd7f5b983116cb8b1@hub.testingbot.com/wd/hub',
+    		    command_executor='http://<tu_id_en_testingbot>@hub.testingbot.com/wd/hub',
     			desired_capabilities=capabilities)
         self.driver.maximize_window()
         self.driver.get("http://www.segurosimple.com/")

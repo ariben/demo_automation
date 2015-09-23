@@ -1,3 +1,7 @@
+'''
+Script de prueba que verificar que la lista "Modelo" contenga elementos
+Para ver el bug(si aun sigue en la web) descomentar Daewoo y comentar Alfa Romeo
+'''
 import time
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait

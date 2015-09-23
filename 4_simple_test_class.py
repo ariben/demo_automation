@@ -13,6 +13,7 @@ class SeguroTest(unittest.TestCase):
 
     def test_modal_te_llamamos(self):
         id_modal = "llamame"
+        #codigo javascript a ejecutarse en la web app para encontrar un elemento
         js_get_modal_displayed= "return document.getElementById('%s').style.display == 'block'" % id_modal
         element = self.driver.find_element_by_id("Tellamamos")
         element.click()
