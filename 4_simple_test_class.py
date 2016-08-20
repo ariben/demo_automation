@@ -27,6 +27,12 @@ class SeguroTest(unittest.TestCase):
         # Mala practica fines visuales
         time.sleep(3)
 
+    def save_screenshot(self,identifier):
+            prefix = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+            context = self.id()
+            filepath = os.getcwd()+'/Screenshots/%s_%s_%s.png'%(context,prefix,identifier)
+            self.driver.save_screenshot(filepath)
+
     def tearDown(self):
         self.driver.quit()
 
