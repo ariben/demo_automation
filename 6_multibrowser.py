@@ -1,23 +1,20 @@
-'''
-Convirtiendo script en clases de prueba
-
-Setup: será lo primero que se ejecute, usualmente contiene la inicializacion
-del browser + url de la webapp
-
-tearDown: lo que siempre se ejecutara para terminar el script(cerrar el browser)
-'''
-
 import time
 import unittest
 from selenium import webdriver
-from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import TimeoutException
+
+'''
+El siguiente script requiere tener una cuenta en testingbot.com
+Una vez creada copiar tu id de : http://testingbot.com/support/getting-started/python.html
+'''
+
 
 class SeguroTest(unittest.TestCase):
     def setUp(self):
-        self.driver = webdriver.Chrome()
+        capabilities = { 'platform': 'Windows', 'browserName': 'internet explorer', 'version': '9' }
+        self.driver = webdriver.Remote(
+    		    command_executor='http://id:secret@hub.testingbot.com/wd/hub',
+    			desired_capabilities=capabilities)
         self.driver.maximize_window()
         self.driver.get("http://www.segurosimple.com/")
 
@@ -31,7 +28,7 @@ class SeguroTest(unittest.TestCase):
         element = self.driver.find_element_by_id("Marca")
         element.send_keys(test_data["marca"])
 
-        element = self.driver.find_element_by_id("Año")
+        element = self.driver.find_element_by_id("annio_fabricacion")
         element.send_keys(test_data["annio_fabricacion"])
 
         element = self.driver.find_element_by_id("Modelo")
@@ -43,12 +40,8 @@ class SeguroTest(unittest.TestCase):
         self.driver.find_element_by_id("TelefonoCotizacion").send_keys(test_data["fono"])
         self.driver.find_element_by_id("EmailCotizacion").send_keys(test_data["mail"])
         self.driver.find_element_by_id("btnComparar").click()
-        try:
-            btn_descarga = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((By.ID, "btDescargar")))
-        except TimeoutException:
-            print ("TimeoutException")
-        self.assertTrue (btn_descarga, "La pagina de descarga no fue mostrada")
-
+        # Mala practica fines visuales
+        time.sleep(5)
 
     def tearDown(self):
         self.driver.quit()
